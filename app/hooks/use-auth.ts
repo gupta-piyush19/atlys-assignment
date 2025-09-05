@@ -6,18 +6,19 @@ import { persist } from "zustand/middleware";
 interface User {
   email: string;
   username: string;
+  password: string; // store password too (for demo, not safe for prod!)
 }
 
 interface AuthState {
-  user: User | null;
+  user: Omit<User, "password"> | null;
   isAuthenticated: boolean;
+  accounts: User[];
   signIn: (email: string, password: string) => Promise<boolean>;
   signUp: (email: string, password: string) => Promise<boolean>;
   signOut: () => void;
 }
 
-// Test accounts
-const TEST_ACCOUNTS = [
+const DEFAULT_ACCOUNTS: User[] = [
   { email: "demo@example.com", password: "password123", username: "demo" },
   { email: "test@user.com", password: "testpass", username: "testuser" },
 ];
@@ -27,24 +28,23 @@ export const useAuth = create<AuthState>()(
     (set, get) => ({
       user: null,
       isAuthenticated: false,
+      accounts: DEFAULT_ACCOUNTS,
 
       signIn: async (email: string, password: string) => {
-        const account = TEST_ACCOUNTS.find(
+        const account = get().accounts.find(
           (acc) => acc.email === email && acc.password === password
         );
 
         if (account) {
-          const user = { email: account.email, username: account.username };
+          const { password, ...user } = account;
           set({ user, isAuthenticated: true });
           return true;
         }
-
         return false;
       },
 
       signUp: async (email: string, password: string) => {
-        // Check if email already exists
-        const existingAccount = TEST_ACCOUNTS.find(
+        const existingAccount = get().accounts.find(
           (acc) => acc.email === email
         );
         if (existingAccount) {
@@ -52,8 +52,14 @@ export const useAuth = create<AuthState>()(
         }
 
         const username = email.split("@")[0];
-        const user = { email, username };
-        set({ user, isAuthenticated: true });
+        const newAccount: User = { email, password, username };
+
+        set((state) => ({
+          accounts: [...state.accounts, newAccount],
+          user: { email, username },
+          isAuthenticated: true,
+        }));
+
         return true;
       },
 
@@ -62,7 +68,7 @@ export const useAuth = create<AuthState>()(
       },
     }),
     {
-      name: "auth-storage",
+      name: "auth-storage", // everything (accounts + user) goes into localStorage
     }
   )
 );

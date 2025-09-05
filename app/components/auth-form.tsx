@@ -20,17 +20,40 @@ export default function AuthForm({
     repeatPassword: "",
   });
 
+  const resetForm = () => {
+    setFormData({
+      email: "",
+      password: "",
+      repeatPassword: "",
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     let result;
     if (type === "signin") {
       result = await signIn(formData.email, formData.password);
-    } else {
-      result = await signUp(formData.email, formData.password);
-    }
 
-    onSuccess();
+      if (!result) {
+        alert("Invalid email or password");
+        resetForm();
+      }
+      return;
+    } else {
+      if (formData.password !== formData.repeatPassword) {
+        alert("Passwords do not match");
+        resetForm();
+        return;
+      }
+      result = await signUp(formData.email, formData.password);
+
+      if (!result) {
+        alert("Account with this email already exists");
+        resetForm();
+      }
+      return;
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
