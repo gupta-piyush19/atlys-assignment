@@ -1,21 +1,14 @@
-// UI Icons
-export { Logo } from "./Logo";
-export { Arrow } from "./Arrow";
-export { Close } from "./Close";
-export { Login } from "./Login";
-
-// Social/Post Icons
-export { Heart } from "./Heart";
-export { Comment } from "./Comment";
-export { Share } from "./Share";
-
-// Editor/Toolbar Icons
-export { Menu } from "./Menu";
-export { LinkArrow } from "./LinkArrow";
-export { Archive } from "./Archive";
-export { Copy } from "./Copy";
-export { Trash } from "./Trash";
-export { Plus } from "./Plus";
-export { Microphone } from "./Microphone";
-export { Send } from "./Send";
-export { Spinner } from "./Spinner";
+export { Logo } from "./logo";
+export { Arrow } from "./arrow";
+export { Close } from "./close";
+export { Heart } from "./heart";
+export { Comment } from "./comment";
+export { Share } from "./share";
+export { Menu } from "./menu";
+export { LinkArrow } from "./link-arrow";
+export { Archive } from "./archive";
+export { Copy } from "./copy";
+export { Trash } from "./trash";
+export { Plus } from "./plus";
+export { Microphone } from "./microphone";
+export { Send } from "./send";
