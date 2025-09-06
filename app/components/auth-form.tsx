@@ -5,9 +5,10 @@ import { Arrow } from "./icons";
 interface AuthFormProps {
   type: "signin" | "signup";
   onSwitchType: (type: "signin" | "signup") => void;
+  onSuccess: () => void;
 }
 
-export function AuthForm({ type, onSwitchType }: AuthFormProps) {
+export function AuthForm({ type, onSuccess, onSwitchType }: AuthFormProps) {
   const { signIn, signUp } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -33,8 +34,8 @@ export function AuthForm({ type, onSwitchType }: AuthFormProps) {
       if (!result) {
         alert("Invalid email or password");
         resetForm();
+        return;
       }
-      return;
     } else {
       if (formData.password !== formData.repeatPassword) {
         alert("Passwords do not match");
@@ -46,9 +47,12 @@ export function AuthForm({ type, onSwitchType }: AuthFormProps) {
       if (!result) {
         alert("Account with this email already exists");
         resetForm();
+        return;
       }
-      return;
     }
+
+    resetForm();
+    onSuccess();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

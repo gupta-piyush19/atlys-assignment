@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../hooks/use-auth";
 import { Logo, Arrow } from "./icons";
+import { DEFAULT_AVATAR } from "~/lib/constants";
 
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { user, isAuthenticated, signOut } = useAuth();
@@ -32,13 +33,14 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
           {isAuthenticated ? (
             <div className='flex items-center space-x-4'>
               <img
-                src={"https://github.com/shadcn.png"}
+                src={DEFAULT_AVATAR}
                 alt={user?.username}
                 className='w-8 h-8 rounded-full'
               />
+              <span>{user?.username}</span>
               <button
                 onClick={signOut}
-                className='text-gray-600 hover:text-gray-900'
+                className='text-gray-600 hover:text-gray-900 cursor-pointer'
               >
                 Logout
               </button>

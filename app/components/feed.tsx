@@ -1,9 +1,12 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/use-auth";
 import { usePost } from "../hooks/use-post";
 import { PostEditor } from "./post-editor";
 import { Post } from "./post";
 import { AuthModal } from "./auth-modal";
+import { DEFAULT_AVATAR } from "~/lib/constants";
 
 export function Feed() {
   const { user, isAuthenticated } = useAuth();
@@ -12,6 +15,18 @@ export function Feed() {
   const [authModalType, setAuthModalType] = useState<"signin" | "signup">(
     "signin"
   );
+
+  useEffect(() => {
+    if (showAuthModal) {
+      const originalOverflow = document.body.style.overflow;
+
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [showAuthModal]);
 
   const handleInteraction = () => {
     if (!isAuthenticated) {
@@ -27,13 +42,8 @@ export function Feed() {
 
     addPost(content, {
       name: user.username,
-      avatar: "https://github.com/shadcn.png",
+      avatar: DEFAULT_AVATAR,
     });
-  };
-
-  const openSignIn = () => {
-    setAuthModalType("signin");
-    setShowAuthModal(true);
   };
 
   return (
@@ -46,7 +56,9 @@ export function Feed() {
             isAuthenticated={isAuthenticated}
           />
         </div>
-
+        {!posts.length && (
+          <div className='text-center text-gray-500'>Loading...</div>
+        )}
         <div className='space-y-6'>
           {posts.map((post, index) => (
             <div
@@ -54,7 +66,7 @@ export function Feed() {
               className='animate-slide-up'
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Post post={post} />
+              <Post post={post} onInteraction={handleInteraction} />
             </div>
           ))}
         </div>

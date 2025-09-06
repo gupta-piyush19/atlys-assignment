@@ -1,6 +1,8 @@
 import type { PostType } from "~/types/post";
 import type { User } from "~/types/user";
 
+export const DEFAULT_AVATAR = "https://github.com/shadcn.png";
+
 export const DEFAULT_ACCOUNTS: User[] = [
   { email: "demo@example.com", password: "password123", username: "demo" },
   { email: "test@user.com", password: "testpass", username: "testuser" },

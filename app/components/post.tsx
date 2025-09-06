@@ -1,15 +1,12 @@
-import type { PostType } from "../hooks/use-post";
+import type { PostType } from "~/types/post";
 import { Heart, Comment, Send2 } from "./icons";
 
 interface PostProps {
   post: PostType;
+  onInteraction: () => void;
 }
 
-export function Post({ post }: PostProps) {
-  const showAlert = () => {
-    alert("Function not implemented");
-  };
-
+export function Post({ post, onInteraction }: PostProps) {
   return (
     <div className='rounded-3xl bg-gray-6 p-2 hover-lift'>
       <div className='bg-white rounded-3xl p-6 shadow-sm border border-gray-9'>
@@ -34,22 +31,22 @@ export function Post({ post }: PostProps) {
       </div>
       <div className='flex items-center space-x-6 mt-4 mb-2 px-6'>
         <button
-          onClick={showAlert}
-          className='flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors group'
+          onClick={onInteraction}
+          className='flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors group cursor-pointer'
         >
           <Heart />
         </button>
 
         <button
-          onClick={showAlert}
-          className='flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors group'
+          onClick={onInteraction}
+          className='flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors group cursor-pointer'
         >
           <Comment />
         </button>
 
         <button
-          onClick={showAlert}
-          className='flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors group'
+          onClick={onInteraction}
+          className='flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors group cursor-pointer'
         >
           <Send2 />
         </button>

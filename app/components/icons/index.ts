@@ -16,3 +16,4 @@ export { ListUnordered } from "./list-unordered";
 export { ListOrdered } from "./list-ordered";
 export { Quotes } from "./quotes";
 export { Script } from "./script";
+export { Emoji } from "./emoji";

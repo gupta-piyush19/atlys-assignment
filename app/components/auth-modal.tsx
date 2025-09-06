@@ -8,9 +8,13 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ type, onClose, onSwitchType }: AuthModalProps) {
+  const onSuccess = () => {
+    onClose();
+  };
+
   return (
     <Modal isOpen={true} onClose={onClose} key={type}>
-      <AuthForm type={type} onSwitchType={onSwitchType} />
+      <AuthForm type={type} onSwitchType={onSwitchType} onSuccess={onSuccess} />
     </Modal>
   );
 }

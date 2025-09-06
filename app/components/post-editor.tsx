@@ -12,11 +12,12 @@ import {
   Quotes,
   Script,
   VideoCamera,
+  Emoji,
 } from "./icons";
 import { Separator } from "./separator";
 
 interface PostEditorProps {
-  onPublish: (content: string, emoji: string) => void;
+  onPublish: (content: string) => void;
   onInteraction: () => void;
   isAuthenticated: boolean;
 }
@@ -27,7 +28,6 @@ export function PostEditor({
   isAuthenticated,
 }: PostEditorProps) {
   const [content, setContent] = useState("");
-  const [selectedEmoji, setSelectedEmoji] = useState("😊");
 
   const handleSubmit = () => {
     if (!isAuthenticated) {
@@ -37,12 +37,12 @@ export function PostEditor({
 
     if (!content.trim()) return;
 
-    onPublish(content, selectedEmoji);
+    onPublish(content);
     setContent("");
   };
 
   const handleToolbarClick = () => {
-    alert("function not implemented");
+    onInteraction();
   };
 
   return (
@@ -122,9 +122,12 @@ export function PostEditor({
             </button>
           </div>
 
-          <div className='flex items-start space-x-4'>
-            <button className='text-2xl hover:scale-110 transition-transform'>
-              {selectedEmoji}
+          <div className='flex items-start space-x-2'>
+            <button
+              className='ml-1 mt-0.5 text-2xl hover:scale-110 transition-transform'
+              onClick={handleToolbarClick}
+            >
+              <Emoji />
             </button>
 
             <div className='flex-1'>

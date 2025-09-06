@@ -1,6 +1,8 @@
 import type { Route } from "./+types/signin";
 import { useNavigate } from "react-router";
 import { AuthForm } from "~/components/auth-form";
+import { useAuth } from "~/hooks/use-auth";
+import { useEffect } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,9 +17,25 @@ export default function SignIn() {
     navigate(type === "signin" ? "/signin" : "/signup");
   };
 
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+
+  const onSuccess = () => {
+    navigate("/");
+  };
   return (
     <div className='flex justify-center items-center'>
-      <AuthForm key='signin' type='signin' onSwitchType={onSwitchType} />
+      <AuthForm
+        key='signin'
+        type='signin'
+        onSwitchType={onSwitchType}
+        onSuccess={onSuccess}
+      />
     </div>
   );
 }
