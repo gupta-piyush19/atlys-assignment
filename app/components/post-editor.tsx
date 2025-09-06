@@ -11,8 +11,9 @@ import {
   ListOrdered,
   Quotes,
   Script,
+  VideoCamera,
 } from "./icons";
-import { VideoCamera } from "./icons";
+import { Separator } from "./separator";
 
 interface PostEditorProps {
   onPublish: (content: string, emoji: string) => void;
@@ -40,18 +41,8 @@ export function PostEditor({
     setContent("");
   };
 
-  const handleInputClick = () => {
-    if (!isAuthenticated) {
-      onInteraction();
-    }
-  };
-
   const handleToolbarClick = () => {
-    if (!isAuthenticated) {
-      onInteraction();
-    } else {
-      alert("function not implemented");
-    }
+    alert("function not implemented");
   };
 
   return (
@@ -61,8 +52,7 @@ export function PostEditor({
           <div className='flex items-center justify-between mb-4'>
             <div className='flex items-center space-x-4 bg-gray-6 rounded-xl p-1'>
               <select
-                className='text-sm text-gray-600 dark:text-gray-300 bg-transparent border-none outline-none cursor-pointer'
-                onClick={handleToolbarClick}
+                className='text-sm text-black-2 bg-white p-2 rounded-md shadow-sm border-none outline-none cursor-pointer'
                 defaultValue='Paragraph'
               >
                 <option>Paragraph</option>
@@ -70,50 +60,54 @@ export function PostEditor({
                 <option>Heading 2</option>
               </select>
 
-              <div className='flex items-center space-x-2'>
+              <div className='flex items-center space-x-1 ml-2'>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 bg-white flex items-center justify-center rounded-md shadow-sm cursor-pointer'
                 >
                   <TextBold />
                 </button>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <TextItalic />
                 </button>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <TextUnderline />
                 </button>
               </div>
-              <div className='flex items-center space-x-2'>
+              <Separator />
+
+              <div className='flex items-center space-x-1'>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <ListUnordered />
                 </button>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <ListOrdered />
                 </button>
               </div>
-              <div className='flex items-center space-x-2'>
+              <Separator />
+
+              <div className='flex items-center space-x-1 mr-2'>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <Quotes />
                 </button>
                 <button
                   onClick={handleToolbarClick}
-                  className='p-1 transition-colors'
+                  className='p-1 transition-colors w-8 h-8 flex items-center justify-center rounded-md hover:shadow-sm cursor-pointer hover:bg-white'
                 >
                   <Script />
                 </button>
@@ -122,17 +116,14 @@ export function PostEditor({
 
             <button
               onClick={handleToolbarClick}
-              className='p-2 bg-red-2 hover:bg-red-2/80 transition-colors flex items-center justify-center rounded-xl w-10 h-10 cursor-pointer'
+              className='p-2 bg-red-2 hover:bg-red-2/80 transition-colors flex items-center justify-center rounded-xl w-10 h-10 cursor-pointer shadow-sm'
             >
               <Trash className='text-red-1' />
             </button>
           </div>
 
           <div className='flex items-start space-x-4'>
-            <button
-              onClick={handleToolbarClick}
-              className='text-2xl mt-1 hover:scale-110 transition-transform'
-            >
+            <button className='text-2xl hover:scale-110 transition-transform'>
               {selectedEmoji}
             </button>
 
@@ -140,7 +131,6 @@ export function PostEditor({
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                onClick={handleInputClick}
                 placeholder='How are you feeling today?'
                 className='w-full p-0 text-gray-700 text-sm font-medium placeholder-gray-13 bg-transparent border-none outline-none resize-none leading-relaxed'
                 rows={3}
@@ -154,19 +144,19 @@ export function PostEditor({
           <div className='flex items-center space-x-4'>
             <button
               onClick={handleToolbarClick}
-              className='text-gray-500 hover:text-gray-700 transition-colors bg-gray-12 flex items-center justify-center rounded-xl w-8 h-8'
+              className='text-gray-500 hover:text-gray-700 transition-colors bg-gray-12 flex items-center justify-center rounded-xl w-8 h-8 cursor-pointer shadow-sm'
             >
               <Plus />
             </button>
             <button
               onClick={handleToolbarClick}
-              className='text-gray-500 hover:text-gray-700 transition-colors'
+              className='text-gray-14 hover:text-gray-700 transition-colors cursor-pointer'
             >
               <Microphone />
             </button>
             <button
               onClick={handleToolbarClick}
-              className='text-gray-500 hover:text-gray-700 transition-colors'
+              className='text-gray-14 hover:text-gray-700 transition-colors cursor-pointer'
             >
               <VideoCamera />
             </button>
