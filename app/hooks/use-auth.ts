@@ -2,28 +2,10 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { AuthStore, User } from "~/types/user";
+import { DEFAULT_ACCOUNTS } from "~/lib/constants";
 
-interface User {
-  email: string;
-  username: string;
-  password: string; // store password too (for demo, not safe for prod!)
-}
-
-interface AuthState {
-  user: Omit<User, "password"> | null;
-  isAuthenticated: boolean;
-  accounts: User[];
-  signIn: (email: string, password: string) => Promise<boolean>;
-  signUp: (email: string, password: string) => Promise<boolean>;
-  signOut: () => void;
-}
-
-const DEFAULT_ACCOUNTS: User[] = [
-  { email: "demo@example.com", password: "password123", username: "demo" },
-  { email: "test@user.com", password: "testpass", username: "testuser" },
-];
-
-export const useAuth = create<AuthState>()(
+export const useAuth = create<AuthStore>()(
   persist(
     (set, get) => ({
       user: null,
@@ -68,7 +50,7 @@ export const useAuth = create<AuthState>()(
       },
     }),
     {
-      name: "auth-storage", // everything (accounts + user) goes into localStorage
+      name: "auth-storage",
     }
   )
 );

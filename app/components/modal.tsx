@@ -21,7 +21,6 @@ export function Modal({
       <div
         className={`bg-white dark:bg-gray-800 rounded-2xl w-full max-w-md relative animate-scale-in hover-lift ${className}`}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
           className='absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors'

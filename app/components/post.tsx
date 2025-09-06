@@ -1,4 +1,4 @@
-import type { PostType } from "./feed";
+import type { PostType } from "../hooks/use-post";
 import { Heart, Comment, Send2 } from "./icons";
 
 interface PostProps {
