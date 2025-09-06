@@ -41,7 +41,10 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
         }`}
       >
         <div className='mx-auto px-8 py-4 flex items-center justify-between'>
-          <div className='flex items-center gap-2'>
+          <div
+            className='flex items-center gap-2 cursor-pointer'
+            onClick={navigateToHome}
+          >
             <Logo className='text-black' />
             <h1 className='font-bold'>foo-rum</h1>
           </div>
