@@ -1,4 +1,4 @@
-import { Modal } from "./modal";
+import { Modal } from "./common/modal";
 import { AuthForm } from "./auth-form";
 
 interface AuthModalProps {

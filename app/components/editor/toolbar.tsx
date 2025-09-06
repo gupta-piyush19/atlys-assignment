@@ -8,7 +8,7 @@ import {
   Script,
   Trash,
 } from "../icons";
-import { Separator } from "../separator";
+import { Separator } from "../common/separator";
 import { ToolbarButton } from "./toolbar-button";
 
 interface ToolbarProps {
