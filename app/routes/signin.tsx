@@ -1,6 +1,6 @@
 import type { Route } from "./+types/signin";
 import { useNavigate } from "react-router";
-import AuthForm from "~/components/auth-form";
+import { AuthForm } from "~/components/auth-form";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -17,12 +17,7 @@ export default function SignIn() {
 
   return (
     <div className='flex justify-center items-center'>
-      <AuthForm
-        key='signin'
-        type='signin'
-        onSuccess={() => {}}
-        onSwitchType={onSwitchType}
-      />
+      <AuthForm key='signin' type='signin' onSwitchType={onSwitchType} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ interface ModalProps {
   className?: string;
 }
 
-export default function Modal({
+export function Modal({
   isOpen,
   onClose,
   children,

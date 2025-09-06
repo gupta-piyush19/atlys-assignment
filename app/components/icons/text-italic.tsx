@@ -5,24 +5,26 @@ interface IconProps {
   size?: number;
 }
 
-export const Microphone: React.FC<IconProps> = ({
+export const TextItalic: React.FC<IconProps> = ({
   className = "",
-  size = 24,
+  size = 14,
 }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox='0 0 24 24'
+      viewBox='0 0 14 14'
       fill='none'
-      stroke='currentColor'
+      xmlns='http://www.w3.org/2000/svg'
       className={className}
     >
       <path
+        d='M5.24984 1.75005L11.0832 1.75005M2.9165 12.25L8.74984 12.25M8.16651 1.75005L5.83317 12.25'
+        stroke='currentColor'
+        strokeOpacity='0.54'
+        strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
-        strokeWidth={2}
-        d='M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z'
       />
     </svg>
   );

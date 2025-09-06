@@ -4,15 +4,10 @@ import { Arrow } from "./icons";
 
 interface AuthFormProps {
   type: "signin" | "signup";
-  onSuccess: () => void;
   onSwitchType: (type: "signin" | "signup") => void;
 }
 
-export default function AuthForm({
-  type,
-  onSuccess,
-  onSwitchType,
-}: AuthFormProps) {
+export function AuthForm({ type, onSwitchType }: AuthFormProps) {
   const { signIn, signUp } = useAuth();
   const [formData, setFormData] = useState({
     email: "",

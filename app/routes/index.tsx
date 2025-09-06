@@ -1,5 +1,5 @@
 import type { Route } from "./+types/index";
-import Feed from "../components/feed";
+import { Feed } from "../components/feed";
 
 export function meta({}: Route.MetaArgs) {
   return [

@@ -1,4 +1,4 @@
-import AuthForm from "~/components/auth-form";
+import { AuthForm } from "~/components/auth-form";
 import type { Route } from "./+types/signup";
 import { useNavigate } from "react-router";
 
@@ -17,12 +17,7 @@ export default function SignUp() {
 
   return (
     <div className='flex justify-center items-center'>
-      <AuthForm
-        key='signup'
-        type='signup'
-        onSuccess={() => {}}
-        onSwitchType={onSwitchType}
-      />
+      <AuthForm key='signup' type='signup' onSwitchType={onSwitchType} />
     </div>
   );
 }

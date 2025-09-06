@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../hooks/use-auth";
-import PostEditor from "./PostEditor";
-import Post from "./Post";
-import AuthModal from "./AuthModal";
+import { PostEditor } from "./post-editor";
+import { Post } from "./post";
+import { AuthModal } from "./auth-modal";
 
 export interface PostType {
   id: string;
@@ -58,7 +58,7 @@ const MOCK_POSTS: PostType[] = [
   },
 ];
 
-export default function Feed() {
+export function Feed() {
   const { user, isAuthenticated, signOut } = useAuth();
   const [posts, setPosts] = useState<PostType[]>(MOCK_POSTS);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -71,7 +71,7 @@ export default function Feed() {
       setAuthModalType("signin");
       setShowAuthModal(true);
     } else {
-      alert("Function not implemented");
+      alert("function not implemented");
     }
   };
 
@@ -100,9 +100,7 @@ export default function Feed() {
 
   return (
     <div>
-      {/* Main Content */}
       <main className='max-w-2xl mx-auto px-4 py-8'>
-        {/* Post Editor */}
         <div className='mb-8 animate-slide-down'>
           <PostEditor
             onPublish={handlePublishPost}
@@ -111,21 +109,19 @@ export default function Feed() {
           />
         </div>
 
-        {/* Posts Feed */}
         <div className='space-y-6'>
           {posts.map((post, index) => (
             <div
               key={post.id}
-              className='animate-slide-up hover-lift'
+              className='animate-slide-up'
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Post post={post} onInteraction={handleInteraction} />
+              <Post post={post} />
             </div>
           ))}
         </div>
       </main>
 
-      {/* Auth Modal */}
       {showAuthModal && (
         <AuthModal
           type={authModalType}

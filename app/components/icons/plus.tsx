@@ -5,21 +5,22 @@ interface IconProps {
   size?: number;
 }
 
-export const Plus: React.FC<IconProps> = ({ className = "", size = 24 }) => {
+export const Plus: React.FC<IconProps> = ({ className = "", size = 18 }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox='0 0 24 24'
+      viewBox='0 0 18 18'
       fill='none'
-      stroke='currentColor'
+      xmlns='http://www.w3.org/2000/svg'
       className={className}
     >
       <path
+        d='M3.75 9H9M14.25 9H9M9 9V3.75M9 9V14.25'
+        stroke='black'
+        strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
-        strokeWidth={2}
-        d='M12 6v6m0 0v6m0-6h6m-6 0H6'
       />
     </svg>
   );
