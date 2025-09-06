@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/use-auth";
 import { Logo, Arrow } from "./icons";
 import { DEFAULT_AVATAR } from "~/lib/constants";
@@ -6,6 +7,7 @@ import { DEFAULT_AVATAR } from "~/lib/constants";
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { user, isAuthenticated, signOut } = useAuth();
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
 
@@ -21,9 +23,23 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
     navigate("/");
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className='min-h-screen'>
-      <header>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300  ${
+          isScrolled ? "shadow-md" : ""
+        }`}
+      >
         <div className='mx-auto px-8 py-4 flex items-center justify-between'>
           <div className='flex items-center gap-2'>
             <Logo className='text-black' />
@@ -63,7 +79,8 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
           )}
         </div>
       </header>
-      {children}
+
+      <main className='pt-20'>{children}</main>
     </div>
   );
 };

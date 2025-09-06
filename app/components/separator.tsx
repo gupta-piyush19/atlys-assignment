@@ -5,5 +5,5 @@ interface SeparatorProps {
 }
 
 export const Separator: React.FC<SeparatorProps> = ({ className = "" }) => {
-  return <div className={`w-[1px] h-[32px] bg-gray-9 ${className}`} />;
+  return <div className={`w-[1px] h-8 bg-gray-9 ${className}`} />;
 };

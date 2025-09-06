@@ -60,12 +60,8 @@ export const Feed = () => {
           <div className='text-center text-gray-500'>Loading...</div>
         )}
         <div className='space-y-6'>
-          {posts.map((post, index) => (
-            <div
-              key={post.id}
-              className='animate-slide-up'
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+          {posts.map((post) => (
+            <div key={post.id} className='animate-slide-up'>
               <Post post={post} onInteraction={handleInteraction} />
             </div>
           ))}

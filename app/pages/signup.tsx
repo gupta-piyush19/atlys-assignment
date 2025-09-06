@@ -21,7 +21,7 @@ export const SignupPage = () => {
   };
 
   return (
-    <div className='flex justify-center items-center pt-44'>
+    <div className='flex justify-center items-center pt-32'>
       <AuthForm
         key='signup'
         type='signup'
