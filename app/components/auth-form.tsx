@@ -8,7 +8,7 @@ interface AuthFormProps {
   onSuccess: () => void;
 }
 
-export function AuthForm({ type, onSuccess, onSwitchType }: AuthFormProps) {
+export const AuthForm = ({ type, onSuccess, onSwitchType }: AuthFormProps) => {
   const { signIn, signUp } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -67,7 +67,7 @@ export function AuthForm({ type, onSuccess, onSwitchType }: AuthFormProps) {
   };
 
   return (
-    <div className='w-[498px] bg-gray-2 rounded-4xl p-3 mt-44'>
+    <div className='w-[498px] bg-gray-2 rounded-4xl p-3'>
       <div className='form bg-white rounded-4xl pt-8 px-12 pb-12'>
         <div className='text-center mb-16'>
           <div className='w-14 h-14 bg-gray-1 rounded-full flex items-center justify-center mx-auto mb-4'>
@@ -165,4 +165,4 @@ export function AuthForm({ type, onSuccess, onSwitchType }: AuthFormProps) {
       </div>
     </div>
   );
-}
+};

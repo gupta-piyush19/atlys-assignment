@@ -7,7 +7,7 @@ interface AuthModalProps {
   onSwitchType: (type: "signin" | "signup") => void;
 }
 
-export function AuthModal({ type, onClose, onSwitchType }: AuthModalProps) {
+export const AuthModal = ({ type, onClose, onSwitchType }: AuthModalProps) => {
   const onSuccess = () => {
     onClose();
   };
@@ -17,4 +17,4 @@ export function AuthModal({ type, onClose, onSwitchType }: AuthModalProps) {
       <AuthForm type={type} onSwitchType={onSwitchType} onSuccess={onSuccess} />
     </Modal>
   );
-}
+};

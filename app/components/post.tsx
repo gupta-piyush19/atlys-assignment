@@ -6,7 +6,22 @@ interface PostProps {
   onInteraction: () => void;
 }
 
-export function Post({ post, onInteraction }: PostProps) {
+export const Post = ({ post, onInteraction }: PostProps) => {
+  const buttons = [
+    {
+      icon: <Heart />,
+      color: "text-red-500",
+    },
+    {
+      icon: <Comment />,
+      color: "text-blue-500",
+    },
+    {
+      icon: <Send2 />,
+      color: "text-green-500",
+    },
+  ];
+
   return (
     <div className='rounded-3xl bg-gray-6 p-2 hover-lift'>
       <div className='bg-white rounded-3xl p-6 shadow-sm border border-gray-9'>
@@ -30,27 +45,15 @@ export function Post({ post, onInteraction }: PostProps) {
         </div>
       </div>
       <div className='flex items-center space-x-6 mt-4 mb-2 px-6'>
-        <button
-          onClick={onInteraction}
-          className='flex items-center space-x-2 text-gray-500 hover:text-red-500 transition-colors group cursor-pointer'
-        >
-          <Heart />
-        </button>
-
-        <button
-          onClick={onInteraction}
-          className='flex items-center space-x-2 text-gray-500 hover:text-blue-500 transition-colors group cursor-pointer'
-        >
-          <Comment />
-        </button>
-
-        <button
-          onClick={onInteraction}
-          className='flex items-center space-x-2 text-gray-500 hover:text-green-500 transition-colors group cursor-pointer'
-        >
-          <Send2 />
-        </button>
+        {buttons.map((button) => (
+          <button
+            onClick={onInteraction}
+            className={`flex items-center space-x-2 text-gray-500 hover:${button.color} transition-colors cursor-pointer`}
+          >
+            {button.icon}
+          </button>
+        ))}
       </div>
     </div>
   );
-}
+};

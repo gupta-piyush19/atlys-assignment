@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/use-auth";
 import { usePost } from "../hooks/use-post";
-import { PostEditor } from "./post-editor";
-import { Post } from "./post";
-import { AuthModal } from "./auth-modal";
+import { PostEditor } from "../components/post-editor";
+import { Post } from "../components/post";
+import { AuthModal } from "../components/auth-modal";
 import { DEFAULT_AVATAR } from "~/lib/constants";
 
-export function Feed() {
+export const Feed = () => {
   const { user, isAuthenticated } = useAuth();
   const { posts, addPost } = usePost();
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -81,4 +81,4 @@ export function Feed() {
       )}
     </div>
   );
-}
+};
